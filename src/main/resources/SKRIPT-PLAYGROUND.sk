@@ -1,0 +1,9 @@
+on join: # EVENT-TEST
+	skript-playground success event "PARSED AND EXECUTED SUCCESSFULLY !"
+	skript-playground fail event "SHOULD NOT PARSE OR EXECUTE."
+
+on join: # SECTION-TEST
+	skript-playground section:
+		skript-playground success section "PARSED AND EXECUTED SUCCESSFULLY !"
+		skript-playground fail section "SHOULD NOT PARSE OR EXECUTE."
+	skript-playground success section "SHOULD NOT PARSE OR EXECUTE." # Outside of allowed section.

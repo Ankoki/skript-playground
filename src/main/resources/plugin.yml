@@ -1,0 +1,7 @@
+name: skript-playground
+version: 1.0-ALPHA
+main: com.ankoki.skriptplayground.SkriptPlayground
+depend:
+  - Skript
+authors:
+  - Ankoki
