@@ -3,13 +3,12 @@ package com.ankoki.skriptplayground.elements.effects;
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptEvent;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
-import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.jetbrains.annotations.Nullable;
 
 public class EffEventFail extends Effect {
 
@@ -23,7 +22,7 @@ public class EffEventFail extends Effect {
 	@Override
 	public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, ParseResult parseResult) {
 		stringExpr = (Expression<String>) exprs[0];
-		return true;
+		return SkriptEvent.isEvent(PlayerDeathEvent.class);
 	}
 
 	@Override
@@ -31,11 +30,6 @@ public class EffEventFail extends Effect {
 		String string = stringExpr.getSingle(event);
 		if (string != null)
 			Bukkit.broadcastMessage(string);
-	}
-
-	@Override
-	public @Nullable Class<? extends Event>[] getUsableEvents() {
-		return CollectionUtils.array(PlayerDeathEvent.class);
 	}
 
 	@Override

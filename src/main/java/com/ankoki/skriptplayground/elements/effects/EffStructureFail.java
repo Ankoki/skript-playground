@@ -3,19 +3,20 @@ package com.ankoki.skriptplayground.elements.effects;
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptEvent;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.structures.StructFunction;
 import ch.njol.util.Kleenean;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
-import org.bukkit.event.block.BlockPhysicsEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.skriptlang.skript.lang.structure.Structure;
 
-public class EffEventSuccess extends Effect {
+import java.util.List;
+
+public class EffStructureFail extends Effect {
 
 	static {
-		Skript.registerEffect(EffEventSuccess.class,
-				"skript-playground success event %string%");
+		Skript.registerEffect(EffStructureFail.class,
+				"skript-playground fail structure %string%");
 	}
 
 	private Expression<String> stringExpr;
@@ -23,7 +24,7 @@ public class EffEventSuccess extends Effect {
 	@Override
 	public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, ParseResult parseResult) {
 		stringExpr = (Expression<String>) exprs[0];
-		return SkriptEvent.isEvent(BlockPhysicsEvent.class);
+		return true;
 	}
 
 	@Override
@@ -34,8 +35,13 @@ public class EffEventSuccess extends Effect {
 	}
 
 	@Override
+	public List<Class<? extends Structure>> getUsableStructures() {
+		return List.of(StructFunction.class);
+	}
+
+	@Override
 	public String toString(Event event, boolean b) {
-		return "skript-playground success event " + stringExpr.toString(event, b);
+		return "skript-playground fail structure " + stringExpr.toString(event, b);
 	}
 
 }

@@ -13,6 +13,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class EffSectionFail extends Effect {
 
 	static {
@@ -36,8 +38,8 @@ public class EffSectionFail extends Effect {
 	}
 
 	@Override
-	public @Nullable Class<? extends Section>[] getUsableSections() {
-		return CollectionUtils.array(SecLoop.class);
+	public @Nullable List<Class<? extends Section>> getUsableSections() {
+		return List.of(SecLoop.class);
 	}
 
 	@Override
